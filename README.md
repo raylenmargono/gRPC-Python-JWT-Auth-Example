@@ -1,3 +1,7 @@
+Example of using application defined Access Token
+and Session Token (JWT) retrieved from user authentication
+to access gRPC endpoint.
+
 Demo:
 
 1. docker-compose up
