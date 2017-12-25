@@ -3,7 +3,7 @@ import requests
 
 from kensho_service import kensho_pb2, kensho_pb2_grpc
 from kensho_service.settings import settings
-from session.kensho_session import KenshoSession
+from session.kensho_session import KenshoSession, get_user_info_from_context
 
 # https://www.kensho.com/team
 KENSHO_TEAM_API = 'https://www.kensho.com/api/v1/team/member'
@@ -16,7 +16,7 @@ class KenshoServicer(kensho_pb2_grpc.KenshoServicer):
         access_token=settings.ACCESS_TOKEN,
         jwt_key=settings.JWT_SECRET
     )
-    def DoKensho(self, request, context, user_info):
+    def DoKensho(self, request, context):
         response = requests.get(KENSHO_TEAM_API)
         if response.status_code == 200:
             team_list = response.json()
@@ -41,6 +41,7 @@ class KenshoServicer(kensho_pb2_grpc.KenshoServicer):
         jwt_key=settings.JWT_SECRET,
         permission_admin=True
     )
-    def DoAdminKensho(self, request, context, user_info):
+    def DoAdminKensho(self, request, context):
+        user_info = get_user_info_from_context(context, settings.JWT_SECRET)
         username = user_info['username'] if user_info else 'Anon'
         return kensho_pb2.KenshoAdminResponse(response='{}: Follow spitz_fluffy on Instagram'.format(username))
