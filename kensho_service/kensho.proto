@@ -1,0 +1,30 @@
+syntax = "proto3";
+package kensho;
+
+import 'session/session.proto';
+
+service Kensho {
+    rpc DoKensho(KenshoRequest) returns (stream KenshoResponse);
+    rpc DoAdminKensho(KenshoAdminRequest) returns (KenshoAdminResponse);
+}
+
+message KenshoRequest {
+    session.SessionMessage authentication = 1;
+}
+
+message KenshoResponse {
+    string photo = 1;
+    string display_name = 2;
+    string first_name = 3;
+    string last_name = 4;
+    string education_snippet = 5;
+    string career_snippet = 6;
+}
+
+message KenshoAdminRequest {
+    session.SessionMessage authentication = 1;
+}
+
+message KenshoAdminResponse {
+    string response = 1;
+}

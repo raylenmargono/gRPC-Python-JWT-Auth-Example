@@ -1,0 +1,7 @@
+syntax = "proto3";
+package session;
+
+message SessionMessage {
+    string session_token = 1;
+    string access_token = 2;
+}

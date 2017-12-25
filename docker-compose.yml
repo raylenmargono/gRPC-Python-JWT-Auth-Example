@@ -1,0 +1,35 @@
+version: '3'
+services:
+  user_service:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: ./docker/user_service/Dockerfile
+    ports:
+      - '8000:5000'
+    env_file:
+      - .env
+  kensho_service:
+    build:
+      context: .
+      dockerfile: ./docker/kensho_service/Dockerfile
+    ports:
+      - '5000:5000'
+    env_file:
+      - .env
+  db:
+    image: postgres:latest
+    build:
+      context: .
+      dockerfile: ./docker/db/Dockerfile
+    ports:
+      - '5432:5432'
+    restart: always
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+    env_file:
+      - .env
+volumes:
+  postgres_volume:
+    driver: local
