@@ -17,10 +17,10 @@ class KenshoSession(object):
 
     def __call__(self, func):
         def _kensho_session(instance, request, context):
-            auth_success, error_handler = self.do_authentication(context)
-            if not auth_success:
+            user_info, error_handler = self.do_authentication(context)
+            if not user_info:
                 return error_handler
-            return func(instance, request, context)
+            return func(instance, request, context, user_info)
         return _kensho_session
 
     def do_authentication(self, context):
@@ -28,26 +28,27 @@ class KenshoSession(object):
         access_token = metadata['access_token']
         session_token = metadata['session_token']
         if self.has_access_token_error(access_token):
-            return False, self.invalidate(context, _ACCESS_TOKEN_ERROR_MSG)
-        has_error, details = self.has_jwt_error(session_token)
-        if has_error:
-            return False, self.invalidate(context, details)
-        return True, None
+            return None, self.invalidate(context, _ACCESS_TOKEN_ERROR_MSG)
+        user_info, error_details = self.get_user_info(session_token)
+        if error_details:
+            return False, self.invalidate(context, error_details)
+        return user_info, None
 
     def has_access_token_error(self, access_token):
         return self.access_token and access_token != self.access_token
 
-    def has_jwt_error(self, session_token):
+    def get_user_info(self, session_token):
+        user_info = None
         if self.jwt_key:
             try:
-                user_info = jwt.decode(session_token, key=self.jwt_key)
+                user_info = jwt.decode(session_token, key=self.jwt_key).get('user_info')
             except jwt.DecodeError:
-                return True, _SESSION_TOKEN_ERROR_MSG
+                return None, _SESSION_TOKEN_ERROR_MSG
             except jwt.ExpiredSignatureError:
-                return True, _SESSION_TOKEN_EXPIRED_MSG
+                return None, _SESSION_TOKEN_EXPIRED_MSG
             if self.permission_admin and not user_info.get('is_admin'):
-                return True, _PERMISSION_EXPIRED_MSG
-        return False, None
+                return None, _PERMISSION_EXPIRED_MSG
+        return user_info, None
 
     def invalidate(self, context, details):
         context.set_code(grpc.StatusCode.INVALID_ARGUMENT)

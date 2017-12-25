@@ -16,7 +16,7 @@ class KenshoServicer(kensho_pb2_grpc.KenshoServicer):
         access_token=settings.ACCESS_TOKEN,
         jwt_key=settings.JWT_SECRET
     )
-    def DoKensho(self, request, context):
+    def DoKensho(self, request, context, user_info):
         response = requests.get(KENSHO_TEAM_API)
         if response.status_code == 200:
             team_list = response.json()
@@ -41,5 +41,6 @@ class KenshoServicer(kensho_pb2_grpc.KenshoServicer):
         jwt_key=settings.JWT_SECRET,
         permission_admin=True
     )
-    def DoAdminKensho(self, request, context):
-        return kensho_pb2.KenshoAdminResponse(response='Follow spitz_fluffy on Instagram')
+    def DoAdminKensho(self, request, context, user_info):
+        username = user_info['username'] if user_info else 'Anon'
+        return kensho_pb2.KenshoAdminResponse(response='{}: Follow spitz_fluffy on Instagram'.format(username))
