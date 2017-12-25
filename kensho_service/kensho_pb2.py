@@ -13,16 +13,14 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-from session import session_pb2 as session_dot_session__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='kensho_service/kensho.proto',
   package='kensho',
   syntax='proto3',
-  serialized_pb=_b('\n\x1bkensho_service/kensho.proto\x12\x06kensho\x1a\x15session/session.proto\"@\n\rKenshoRequest\x12/\n\x0e\x61uthentication\x18\x01 \x01(\x0b\x32\x17.session.SessionMessage\"\x8f\x01\n\x0eKenshoResponse\x12\r\n\x05photo\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x12\n\nfirst_name\x18\x03 \x01(\t\x12\x11\n\tlast_name\x18\x04 \x01(\t\x12\x19\n\x11\x65\x64ucation_snippet\x18\x05 \x01(\t\x12\x16\n\x0e\x63\x61reer_snippet\x18\x06 \x01(\t\"E\n\x12KenshoAdminRequest\x12/\n\x0e\x61uthentication\x18\x01 \x01(\x0b\x32\x17.session.SessionMessage\"\'\n\x13KenshoAdminResponse\x12\x10\n\x08response\x18\x01 \x01(\t2\x8f\x01\n\x06Kensho\x12;\n\x08\x44oKensho\x12\x15.kensho.KenshoRequest\x1a\x16.kensho.KenshoResponse0\x01\x12H\n\rDoAdminKensho\x12\x1a.kensho.KenshoAdminRequest\x1a\x1b.kensho.KenshoAdminResponseb\x06proto3')
-  ,
-  dependencies=[session_dot_session__pb2.DESCRIPTOR,])
+  serialized_pb=_b('\n\x1bkensho_service/kensho.proto\x12\x06kensho\"\x0f\n\rKenshoRequest\"\x8f\x01\n\x0eKenshoResponse\x12\r\n\x05photo\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\x12\x12\n\nfirst_name\x18\x03 \x01(\t\x12\x11\n\tlast_name\x18\x04 \x01(\t\x12\x19\n\x11\x65\x64ucation_snippet\x18\x05 \x01(\t\x12\x16\n\x0e\x63\x61reer_snippet\x18\x06 \x01(\t\"\x14\n\x12KenshoAdminRequest\"\'\n\x13KenshoAdminResponse\x12\x10\n\x08response\x18\x01 \x01(\t2\x8f\x01\n\x06Kensho\x12;\n\x08\x44oKensho\x12\x15.kensho.KenshoRequest\x1a\x16.kensho.KenshoResponse0\x01\x12H\n\rDoAdminKensho\x12\x1a.kensho.KenshoAdminRequest\x1a\x1b.kensho.KenshoAdminResponseb\x06proto3')
+)
 
 
 
@@ -34,13 +32,6 @@ _KENSHOREQUEST = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
-    _descriptor.FieldDescriptor(
-      name='authentication', full_name='kensho.KenshoRequest.authentication', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
@@ -53,8 +44,8 @@ _KENSHOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=62,
-  serialized_end=126,
+  serialized_start=39,
+  serialized_end=54,
 )
 
 
@@ -119,8 +110,8 @@ _KENSHORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=129,
-  serialized_end=272,
+  serialized_start=57,
+  serialized_end=200,
 )
 
 
@@ -131,13 +122,6 @@ _KENSHOADMINREQUEST = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
-    _descriptor.FieldDescriptor(
-      name='authentication', full_name='kensho.KenshoAdminRequest.authentication', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
@@ -150,8 +134,8 @@ _KENSHOADMINREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=274,
-  serialized_end=343,
+  serialized_start=202,
+  serialized_end=222,
 )
 
 
@@ -181,12 +165,10 @@ _KENSHOADMINRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=345,
-  serialized_end=384,
+  serialized_start=224,
+  serialized_end=263,
 )
 
-_KENSHOREQUEST.fields_by_name['authentication'].message_type = session_dot_session__pb2._SESSIONMESSAGE
-_KENSHOADMINREQUEST.fields_by_name['authentication'].message_type = session_dot_session__pb2._SESSIONMESSAGE
 DESCRIPTOR.message_types_by_name['KenshoRequest'] = _KENSHOREQUEST
 DESCRIPTOR.message_types_by_name['KenshoResponse'] = _KENSHORESPONSE
 DESCRIPTOR.message_types_by_name['KenshoAdminRequest'] = _KENSHOADMINREQUEST
@@ -229,8 +211,8 @@ _KENSHO = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=387,
-  serialized_end=530,
+  serialized_start=266,
+  serialized_end=409,
   methods=[
   _descriptor.MethodDescriptor(
     name='DoKensho',

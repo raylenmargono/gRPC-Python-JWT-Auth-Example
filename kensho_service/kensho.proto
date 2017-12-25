@@ -1,16 +1,12 @@
 syntax = "proto3";
 package kensho;
 
-import 'session/session.proto';
-
 service Kensho {
     rpc DoKensho(KenshoRequest) returns (stream KenshoResponse);
     rpc DoAdminKensho(KenshoAdminRequest) returns (KenshoAdminResponse);
 }
 
-message KenshoRequest {
-    session.SessionMessage authentication = 1;
-}
+message KenshoRequest {}
 
 message KenshoResponse {
     string photo = 1;
@@ -21,9 +17,7 @@ message KenshoResponse {
     string career_snippet = 6;
 }
 
-message KenshoAdminRequest {
-    session.SessionMessage authentication = 1;
-}
+message KenshoAdminRequest {}
 
 message KenshoAdminResponse {
     string response = 1;

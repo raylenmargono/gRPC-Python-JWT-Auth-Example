@@ -12,9 +12,9 @@ KENSHO_TEAM_API = 'https://www.kensho.com/api/v1/team/member'
 class KenshoServicer(kensho_pb2_grpc.KenshoServicer):
 
     @KenshoSession(
+        response_class=kensho_pb2.KenshoResponse,
         access_token=settings.ACCESS_TOKEN,
-        jwt_key=settings.JWT_SECRET,
-        response_class=kensho_pb2.KenshoResponse
+        jwt_key=settings.JWT_SECRET
     )
     def DoKensho(self, request, context):
         response = requests.get(KENSHO_TEAM_API)
@@ -36,9 +36,9 @@ class KenshoServicer(kensho_pb2_grpc.KenshoServicer):
             return kensho_pb2.KenshoResponse()
 
     @KenshoSession(
+        response_class=kensho_pb2.KenshoResponse,
         access_token=settings.ACCESS_TOKEN,
         jwt_key=settings.JWT_SECRET,
-        response_class=kensho_pb2.KenshoResponse,
         permission_admin=True
     )
     def DoAdminKensho(self, request, context):

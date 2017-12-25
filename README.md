@@ -1,6 +1,6 @@
 Example of using application defined Access Token
-and Session Token (JWT) retrieved from user authentication
-to access gRPC endpoint.
+and Session Token (JWT) retrieved from an authentication service
+to access auth-restricted gRPC endpoint.
 
 Demo:
 

@@ -13,6 +13,7 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 @click.option('--port', default=5000)
 @click.option('--max-workers', default=16)
 def run(port, max_workers, grpc_interface='[::]'):
+    # TODO(raylen): use interceptor instead of decorator
     thread_pool = futures.ThreadPoolExecutor(max_workers=max_workers)
     grpc_server = grpc.server(thread_pool=thread_pool)
     grpc_server.add_insecure_port(grpc_interface + ':' + str(port))

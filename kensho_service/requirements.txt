@@ -1,11 +1,16 @@
+cachetools==2.0.1
 click==6.7
+google-auth==1.2.1
 grift==0.6.0
 grpcio==1.7.0
 grpcio-tools==1.7.0
 protobuf==3.5.0.post1
 psycopg2==2.7.3.2
+pyasn1==0.4.2
+pyasn1-modules==0.2.1
 PyJWT==1.5.3
 requests==2.13.0
+rsa==3.4.2
 schematics==1.1.1
 six==1.11.0
 SQLAlchemy==1.1.15
