@@ -1,7 +1,7 @@
 import grpc
 
-from user_service import authentication_pb2_grpc, authentication_pb2
-from user_service.models import User
+from proto import authentication_pb2_grpc, authentication_pb2
+from models import User
 
 
 class AuthenticationServicer(authentication_pb2_grpc.AuthenticationServicer):

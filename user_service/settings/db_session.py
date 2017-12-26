@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
 
-from user_service.settings.settings import settings
+from settings import settings
 
 db_url = 'postgresql+psycopg2://{user}:{password}@{host}:5432/{dbname}'.format(
     user=settings.POSTGRES_USER,

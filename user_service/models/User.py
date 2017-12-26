@@ -11,7 +11,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import validates
 from sqlalchemy.orm.exc import NoResultFound
-from user_service.settings import settings, db_session
+from settings import settings, db_session
 
 Base = declarative_base()
 

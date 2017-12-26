@@ -6,9 +6,8 @@ RUN mkdir /src
 WORKDIR /src
 
 COPY kensho_service /src/kensho_service
-COPY session /src/session
+COPY session /src/kensho_service/session
 ADD docker/kensho_service/docker-entrypoint.sh /src/
-RUN mv kensho_service/run_grpc.py ./
 
 RUN pip install -r kensho_service/requirements.txt
 

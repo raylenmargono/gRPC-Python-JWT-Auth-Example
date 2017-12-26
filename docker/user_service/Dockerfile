@@ -7,7 +7,6 @@ WORKDIR /src
 
 COPY user_service /src/user_service
 ADD docker/user_service/docker-entrypoint.sh /src/
-RUN mv user_service/run_grpc.py ./
 
 RUN pip install -r user_service/requirements.txt
 

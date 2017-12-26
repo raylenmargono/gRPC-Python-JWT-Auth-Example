@@ -1,11 +1,12 @@
 import grpc
 import requests
 
-from kensho_service import kensho_pb2, kensho_pb2_grpc
-from kensho_service.settings import settings
+from proto import kensho_pb2, kensho_pb2_grpc
+from settings import settings
 from session.kensho_session import KenshoSession, get_user_info_from_context
 
 # https://www.kensho.com/team
+
 KENSHO_TEAM_API = 'https://www.kensho.com/api/v1/team/member'
 
 
