@@ -3,7 +3,7 @@ import requests
 
 from proto import kensho_pb2, kensho_pb2_grpc
 from settings import settings
-from session.kensho_session import KenshoSession, get_user_info_from_context
+from kensho_session.session import KenshoSession, get_user_info_from_context
 
 # https://www.kensho.com/team
 

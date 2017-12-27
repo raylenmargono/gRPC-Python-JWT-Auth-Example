@@ -6,9 +6,11 @@ RUN mkdir /src
 WORKDIR /src
 
 COPY kensho_service /src/kensho_service
-COPY session /src/kensho_service/session
+COPY session /src/session
 ADD docker/kensho_service/docker-entrypoint.sh /src/
 
-RUN pip install -r kensho_service/requirements.txt
+WORKDIR kensho_service
+RUN pip install -r requirements.txt
+WORKDIR /src
 
 ENTRYPOINT './docker-entrypoint.sh'

@@ -10,4 +10,4 @@ PyJWT==1.5.3
 requests==2.13.0
 schematics==1.1.1
 six==1.11.0
--e git+git@github.com:raylenmargono/gRPC-Python-JWT-Auth-Example.git@74ca77b0cbe281f4ef2b570cb7ea0a74420cb238#egg=kensho_session&subdirectory=session
+-e ../session

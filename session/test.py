@@ -4,7 +4,7 @@ import jwt
 
 import unittest
 
-from session.kensho_session import get_user_info_from_context
+from kensho_session import get_user_info_from_context
 
 MOCK_ACCESS_TOKEN = 'MOCK_ACCESS_TOKEN'
 MOCK_INVALID_ACCESS_TOKEN = 'MOCK_INVALID_ACCESS_TOKEN'
