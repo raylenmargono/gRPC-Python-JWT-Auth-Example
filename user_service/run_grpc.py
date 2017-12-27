@@ -5,7 +5,7 @@ import click
 import grpc
 
 import server
-from proto import authentication_pb2_grpc
+from user_service_client.proto import authentication_pb2_grpc
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 

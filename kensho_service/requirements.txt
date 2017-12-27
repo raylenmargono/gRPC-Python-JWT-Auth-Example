@@ -10,4 +10,5 @@ PyJWT==1.5.3
 requests==2.13.0
 schematics==1.1.1
 six==1.11.0
--e ../session
+-e ../pkgs/kensho_service_client
+-e ../pkgs/kensho_session

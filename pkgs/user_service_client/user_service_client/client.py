@@ -1,7 +1,7 @@
 import grpc
 from google.protobuf import json_format
 
-from proto import authentication_pb2_grpc, authentication_pb2
+from user_service_client.proto import authentication_pb2_grpc, authentication_pb2
 
 
 class AuthenticationClient(object):

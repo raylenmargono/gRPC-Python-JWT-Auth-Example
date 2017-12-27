@@ -6,8 +6,11 @@ RUN mkdir /src
 WORKDIR /src
 
 COPY user_service /src/user_service
+COPY pkgs /src/pkgs
 ADD docker/user_service/docker-entrypoint.sh /src/
 
-RUN pip install -r user_service/requirements.txt
+WORKDIR /src/user_service
+RUN pip install -r requirements.txt
+WORKDIR /src
 
 ENTRYPOINT './docker-entrypoint.sh'

@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
 
-python -m grpc_tools.protoc -I ./user_service  --python_out=./user_service/ --grpc_python_out=./user_service/ ./user_service/proto/authentication.proto
-python -m grpc_tools.protoc -I ./kensho_service  --python_out=./kensho_service/ --grpc_python_out=./kensho_service/ ./kensho_service/proto/kensho.proto
+python -m grpc_tools.protoc -I ./pkgs/kensho_service_client/  \
+--python_out=./pkgs/kensho_service_client/ \
+--grpc_python_out=./pkgs/kensho_service_client/ \
+./pkgs/kensho_service_client/kensho_service_client/proto/kensho.proto
+
+python -m grpc_tools.protoc -I ./pkgs/user_service_client/  \
+--python_out=./pkgs/user_service_client/ \
+--grpc_python_out=./pkgs/user_service_client/ \
+./pkgs/user_service_client/user_service_client/proto/authentication.proto

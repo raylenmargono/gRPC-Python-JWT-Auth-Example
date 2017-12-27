@@ -1,7 +1,7 @@
 import grpc
 from google.protobuf import json_format
 
-from kensho_service import kensho_pb2, kensho_pb2_grpc
+from kensho_service_client.proto import kensho_pb2, kensho_pb2_grpc
 
 
 class KenshoClient(object):

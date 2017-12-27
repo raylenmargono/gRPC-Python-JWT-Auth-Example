@@ -6,7 +6,7 @@ RUN mkdir /src
 WORKDIR /src
 
 COPY kensho_service /src/kensho_service
-COPY session /src/session
+COPY pkgs /src/pkgs
 ADD docker/kensho_service/docker-entrypoint.sh /src/
 
 WORKDIR kensho_service
