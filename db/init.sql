@@ -3,5 +3,6 @@ CREATE TABLE "User" (
   username VARCHAR(30) UNIQUE,
   email VARCHAR(30) UNIQUE,
   password VARCHAR(250),
+  salt VARCHAR(250),
   is_admin BOOLEAN
 );

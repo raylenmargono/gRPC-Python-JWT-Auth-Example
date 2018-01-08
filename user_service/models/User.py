@@ -18,14 +18,13 @@ Base = declarative_base()
 _TOKEN_EXPIRATION = 24 * 30
 
 
-def make_password(raw_password, iterations=100000, hash_name='sha256'):
+def make_password(raw_password, salt, iterations=100000, hash_name='sha256'):
     '''
         Secure password hashing using the PBKDF2 algorithm (recommended)
         Configured to use PBKDF2 + HMAC + SHA256.
         The result is a 64 byte binary string.  Iterations may be changed
         safely but you must rename the algorithm if you change SHA256.
     '''
-    salt = settings.CRYPT_SALT
     dk = hashlib.pbkdf2_hmac(password=raw_password.encode('utf-8'),
                              salt=salt.encode('utf-8'),
                              iterations=iterations,
@@ -51,6 +50,7 @@ class User(Base):
     _id = Column('id', String, primary_key=True, default=str(uuid.uuid4()), unique=True)
     username = Column(String, unique=True)
     password = Column(String)
+    salt = Column(String)
     email = Column(String, unique=True)
     is_admin = Column(Boolean, default=False)
 
@@ -65,9 +65,11 @@ class User(Base):
 
     @staticmethod
     def login(username, password):
-        hashed_password = make_password(password)
         try:
-            user = db_session.session.query(User).filter_by(username=username, password=hashed_password).one()
+            user = db_session.session.query(User).filter_by(username=username).one()
+            hashed_password = make_password(password, user.salt)
+            if user.password != hashed_password:
+                return None
             token = generate_token(user)
             return token
         except NoResultFound:
@@ -75,9 +77,14 @@ class User(Base):
 
     @staticmethod
     def create(username, password, email, is_admin=False):
-        hashed_password = make_password(password)
+        salt = uuid.uuid4().hex
+        hashed_password = make_password(password, salt)
         try:
-            new_user = User(username=username, password=hashed_password, email=email, is_admin=is_admin)
+            new_user = User(username=username,
+                            password=hashed_password,
+                            email=email,
+                            salt=salt,
+                            is_admin=is_admin)
             db_session.session.add(new_user)
             db_session.session.commit()
             token = generate_token(new_user)

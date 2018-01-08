@@ -18,7 +18,8 @@ def run(port, max_workers, grpc_interface='[::]'):
     grpc_server = grpc.server(thread_pool=thread_pool)
     grpc_server.add_insecure_port(grpc_interface + ':' + str(port))
 
-    authentication_pb2_grpc.add_AuthenticationServicer_to_server(server.AuthenticationServicer(), grpc_server)
+    authentication_pb2_grpc.add_AuthenticationServicer_to_server(server.AuthenticationServicer(),
+                                                                 grpc_server)
 
     grpc_server.start()
 
